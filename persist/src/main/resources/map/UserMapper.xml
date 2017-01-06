@@ -84,4 +84,25 @@
       age = #{age,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="getPageList" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+  	select 
+  	<include refid="Base_Column_List" />
+    from user_t
+    <where>
+    	<if test="name != null and name != ''">
+    		and user_name like CONCAT('%', #{name,jdbcType=VARCHAR}, '%')
+    	</if>
+    </where>
+    order by id desc
+  </select>
+  <select id="getPageCount" resultType="int" parameterType="java.util.HashMap">
+    select 
+    count(1)
+    from user_t
+    <where>
+    	<if test="name != null and name != ''">
+    		and user_name like CONCAT('%', #{name,jdbcType=VARCHAR}, '%')
+    	</if>
+    </where>
+  </select>
 </mapper>

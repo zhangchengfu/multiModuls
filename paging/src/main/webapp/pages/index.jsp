@@ -5,7 +5,8 @@
 <head>
 <%@include file="common/meta.jsp"%>
 <title>page test</title>
-
+<link rel="stylesheet"
+	href="${contextPath}/css/main.css">
 <link rel="stylesheet"
 	href="${contextPath}/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet"
@@ -48,6 +49,11 @@
 <script src="${contextPath}/plugins/avalon/avalon-1.5.min.js"></script>
 <script src="${contextPath}/plugins/avalon/avalon.js"></script>
 <script src="${contextPath}/js/Ajax.js"></script>
+
+	<style type="text/css">
+		
+	</style>
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">

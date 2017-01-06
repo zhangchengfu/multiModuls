@@ -23,7 +23,7 @@ public class LoginoutServlet extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getSession().invalidate();
 		request.getRequestDispatcher("/index.jsp").forward(request, response);
+		request.getSession().invalidate();
 	}
 }

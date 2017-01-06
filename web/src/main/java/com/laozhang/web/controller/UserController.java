@@ -32,6 +32,11 @@ public class UserController {
 	@Autowired
 	private IUserService service;
 	
+	@RequestMapping(value="index")
+	public String index() {
+		return "index";
+	}
+	
 	@RequestMapping(value = "search", method = RequestMethod.GET)
     @ResponseBody
 	public JsonRsp<PageResult<User>> getPageList(@RequestParam String pageNo, HttpServletRequest request) {

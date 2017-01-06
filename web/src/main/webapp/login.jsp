@@ -4,10 +4,7 @@
 <!DOCTYPE html>
 <html>
 <body>
-<script type="text/javascript">
-	var path = window.location.href;
-	var last = path.indexOf("?");
-	location.href = path.substring(0, last) + "user/index";
-</script>
+<h2>欢迎!</h2>
+<a href="<%=request.getContextPath() %>/user/index">登陆</a>
 </body>
 </html>

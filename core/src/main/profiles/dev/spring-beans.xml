@@ -34,6 +34,7 @@
 			<tx:method name="add*" propagation="REQUIRED" isolation="READ_COMMITTED" />
 			<tx:method name="update*" propagation="REQUIRED" isolation="READ_COMMITTED" />
 			<tx:method name="insert*" propagation="REQUIRED" isolation="READ_COMMITTED" />
+			<tx:method name="del*" propagation="REQUIRED" isolation="READ_COMMITTED" />
 			<tx:method name="*" propagation="REQUIRED" isolation="READ_COMMITTED"
 				read-only="true" />
 		</tx:attributes>
