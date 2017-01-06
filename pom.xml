@@ -167,6 +167,12 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>taglibs</groupId>
+			<artifactId>standard</artifactId>
+			<version>1.1.2</version>
+		</dependency>
 
 		<!-- 日志文件管理包 -->
 		<!-- log start -->
@@ -332,6 +338,18 @@
 			<artifactId>druid</artifactId>
 			<version>1.0.20</version>
 		</dependency>
+		
+		<dependency>
+          <groupId>javax.servlet</groupId>
+          <artifactId>servlet-api</artifactId>
+          <version>2.5</version>
+          <scope>provided</scope>
+      </dependency>
+      <dependency>
+          <groupId>commons-httpclient</groupId>
+          <artifactId>commons-httpclient</artifactId>
+          <version>3.1</version> 
+      </dependency>
 	</dependencies>
 
 	<!-- <profiles> <profile> <id>dev</id> <properties> <config.dir>dev</config.dir> 
@@ -387,5 +405,6 @@
 		<module>persist</module>
 		<module>utils</module>
 		<module>web</module>
+		<module>paging</module>
 	</modules>
 </project>

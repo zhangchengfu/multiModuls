@@ -34,5 +34,15 @@
   </dependencies>
   <build>
     <finalName>web</finalName>
+    <plugins>
+    	<plugin>
+    		<groupId>org.apache.tomcat.maven</groupId>
+            <artifactId>tomcat7-maven-plugin</artifactId>
+            <version>0.69</version>
+            <configuration>
+                <path>/${project.build.finalName}</path>
+            </configuration>
+    	</plugin>
+    </plugins>
   </build>
 </project>

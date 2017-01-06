@@ -41,7 +41,7 @@
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass"
 			value="org.springframework.web.servlet.view.JstlView" />
-		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="prefix" value="/jsp/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
 
@@ -52,13 +52,14 @@
 	</bean>
 
 	<!-- 对静态资源文件的访问 -->
-	<mvc:resources mapping="/images/**" location="/images/"
+	<mvc:resources mapping="/static/**" location="/static/"/>
+	<!-- <mvc:resources mapping="/images/**" location="/images/"
 		cache-period="31556926" />
 	<mvc:resources mapping="/js/**" location="/js/"
 		cache-period="31556926" />
 	<mvc:resources mapping="/css/**" location="/css/"
 		cache-period="31556926" />
 	<mvc:resources mapping="/upload/**" location="/upload/"
-		cache-period="31556926" />
+		cache-period="31556926" /> -->
 
 </beans>

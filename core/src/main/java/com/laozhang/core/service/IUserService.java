@@ -2,6 +2,8 @@ package com.laozhang.core.service;
 
 import java.util.List;
 
+import com.laozhang.model.base.PageResult;
+import com.laozhang.model.base.Pagination;
 import com.laozhang.model.entity.User;
 
 public interface IUserService {
@@ -42,4 +44,11 @@ public interface IUserService {
 	 * @return
 	 */
 	List<User> getList(List<User> list);
+	
+	/**
+	 * 分页
+	 * @param pagination
+	 * @return
+	 */
+	PageResult<User> getUserPage(Pagination pagination);
 }

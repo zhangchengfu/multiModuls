@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.laozhang.core.dao.IUserDao;
 import com.laozhang.core.service.IUserService;
+import com.laozhang.model.base.PageResult;
+import com.laozhang.model.base.Pagination;
 import com.laozhang.model.entity.User;
 
 @Service
@@ -41,4 +43,9 @@ public class UserServiceImpl implements IUserService {
 		return list;
 	}
 
+	public PageResult<User> getUserPage(Pagination pagination) {
+		return dao.getUserPage(pagination);
+	}
+	
+	
 }

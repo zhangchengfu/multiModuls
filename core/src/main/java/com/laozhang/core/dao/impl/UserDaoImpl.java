@@ -7,10 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.laozhang.core.dao.IUserDao;
+import com.laozhang.core.dao.base.BaseDao;
+import com.laozhang.model.base.PageResult;
+import com.laozhang.model.base.Pagination;
 import com.laozhang.model.entity.User;
 
 @Repository
-public class UserDaoImpl implements IUserDao {
+public class UserDaoImpl extends BaseDao implements IUserDao {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
@@ -48,4 +51,7 @@ public class UserDaoImpl implements IUserDao {
 		return sqlSession.selectList("userMapper.getAll");
 	}
 
+	public PageResult<User> getUserPage(Pagination pagination) {
+		return super.selectPagination("userMapper.getPageList", "userMapper.getPageCount", pagination);
+	}
 }

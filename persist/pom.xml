@@ -29,6 +29,22 @@
 			<artifactId>model</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		
+		
+
+		
+
+		<dependency>
+			<groupId>org.javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<version>3.20.0-GA</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>4.3.1.RELEASE</version>
+		</dependency>
 
 	</dependencies>
 
