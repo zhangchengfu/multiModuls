@@ -14,6 +14,7 @@
 </div>
 <div class="ui-layout-west">
 功能菜单<br/>
+<a href="${pageContext.request.contextPath}/richText/index" target="content">富文本</a>
 </div>
 
 <script src="${pageContext.request.contextPath}/static/js/jquery-1.11.0.min.js"></script>

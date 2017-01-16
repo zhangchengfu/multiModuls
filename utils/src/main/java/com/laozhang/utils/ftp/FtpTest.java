@@ -5,9 +5,9 @@ public class FtpTest {
 		//上传文件
 		upload();
 		//下载文件
-		download();
+		//download();
 		//创建文件夹
-		mkdir();
+		//mkdir();
 	}
 	
 	private static void mkdir() {
@@ -17,14 +17,14 @@ public class FtpTest {
 	
 	private static void download() {
 		String remoteFileName="./111.txt";  
-        String locaFileName="F:\\test\\txt\\3333.txt";  
+        String locaFileName="C:/Users/zhangchengfu/Desktop/cms.json";  
         FtpClientUtil clientUtil=new FtpClientUtil();  
         clientUtil.download(remoteFileName, locaFileName);
 	}
 	
 	private static void upload() {  
-        String remoteFileName="./111.txt";  
-        String locaFileName="F:\\test\\txt\\aaa.txt";  
+        String remoteFileName="./cms.json";  
+        String locaFileName="C:/Users/zhangchengfu/Desktop/cms.json";  
         FtpClientUtil clientUtil=new FtpClientUtil();  
         clientUtil.upload(remoteFileName, locaFileName);  
     }

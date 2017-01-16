@@ -53,6 +53,7 @@
 
 	<!-- 对静态资源文件的访问 -->
 	<mvc:resources mapping="/static/**" location="/static/"/>
+	<mvc:resources mapping="/ueditor/**" location="/ueditor/" ></mvc:resources>
 	<!-- <mvc:resources mapping="/images/**" location="/images/"
 		cache-period="31556926" />
 	<mvc:resources mapping="/js/**" location="/js/"

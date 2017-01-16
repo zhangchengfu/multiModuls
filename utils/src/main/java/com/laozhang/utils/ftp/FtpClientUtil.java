@@ -7,11 +7,14 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.ConnectException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.apache.commons.net.PrintCommandListener;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPReply;
+import org.springframework.web.multipart.MultipartFile;
 
 public class FtpClientUtil {
 
@@ -30,8 +33,8 @@ public class FtpClientUtil {
 	public FtpClientUtil() {
 		server = "localhost";
 		port = 21;
-		username = "abc";
-		password = "123456";
+		username = "zhangchengfu";
+		password = "taobang10201";
 	}
 
 	public FtpClientUtil(String server, int port, String username, String password) {
@@ -73,6 +76,34 @@ public class FtpClientUtil {
 				}
 			}
 		}
+	}
+	
+	public String upload2(MultipartFile file) {
+		FTPClient ftp = null;
+		String url = "";
+		try {
+			ftp = new FTPClient();
+			ftp.addProtocolCommandListener(new PrintCommandListener(new PrintWriter(System.out), true));
+			// 连接ftp服务器
+			connect(ftp);
+			// 设置属性
+			setProperty(ftp);
+			// 上传文件
+			url = upload2(ftp, file);
+			// 退出
+			logout(ftp);
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			if (ftp.isConnected()) {
+				try {
+					ftp.disconnect();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return url;
 	}
 
 	/**
@@ -169,6 +200,26 @@ public class FtpClientUtil {
 		input = new FileInputStream(locaFileName);
 		ftp.storeFile(remoteFileName, input);
 		input.close();
+	}
+	
+	//上传,返回图片地址
+	private String upload2(FTPClient ftp, MultipartFile file) throws Exception  {
+		String originName = file.getOriginalFilename();
+		int lastIndex = originName.lastIndexOf(".");
+		//获取后缀名
+		String suffix = originName.substring(lastIndex);
+		//重新命名
+		String newName = getSerialNumber() + suffix;
+		InputStream input = file.getInputStream();
+		ftp.storeFile(newName, input);
+		input.close();
+		return "http://localhost:81/" + newName;
+	}
+	
+	private synchronized String getSerialNumber () {
+		String orderId = "";
+		orderId += new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date());
+		return orderId;
 	}
 
 	private void connect(FTPClient ftp) throws Exception {
