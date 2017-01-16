@@ -213,7 +213,7 @@ public class FtpClientUtil {
 		InputStream input = file.getInputStream();
 		ftp.storeFile(newName, input);
 		input.close();
-		return "http://localhost:81/" + newName;
+		return "http://localhost:81/" + newName;//nginx
 	}
 	
 	private synchronized String getSerialNumber () {
