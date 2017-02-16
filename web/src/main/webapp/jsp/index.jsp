@@ -14,7 +14,8 @@
 </div>
 <div class="ui-layout-west">
 功能菜单<br/>
-<a href="${pageContext.request.contextPath}/richText/index" target="content">富文本</a>
+<a href="${pageContext.request.contextPath}/richText/index" target="content">富文本</a><br/>
+<a href="${pageContext.request.contextPath}/upload/index" target="content">upload</a>
 </div>
 
 <script src="${pageContext.request.contextPath}/static/js/jquery-1.11.0.min.js"></script>
