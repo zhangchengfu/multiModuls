@@ -16,7 +16,8 @@
 功能菜单<br/>
 <a href="${pageContext.request.contextPath}/richText/index" target="content">富文本</a><br/>
 <a href="${pageContext.request.contextPath}/upload/index" target="content">upload</a><br/>
-<a href="${pageContext.request.contextPath}/table/index" target="content">分页</a>
+<a href="${pageContext.request.contextPath}/table/index" target="content">分页</a><br/>
+<a href="${pageContext.request.contextPath}/jsp/time.jsp" target="content">日期</a>
 </div>
 
 <script src="${pageContext.request.contextPath}/static/js/jquery-1.11.0.min.js"></script>
