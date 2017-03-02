@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
 	xsi:schemaLocation="
         http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -13,17 +16,21 @@
         http://www.springframework.org/schema/aop
         http://www.springframework.org/schema/aop/spring-aop.xsd
         http://www.springframework.org/schema/mvc
-        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/data/jpa 
+        http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
 
 	<!--扫描包 -->
 	<!-- <context:component-scan base-package="com.laozhang" /> -->
+	
+	<tx:annotation-driven />
 
 	<!-- 读取配置文件 -->
 	<context:property-placeholder location="classpath*:*.properties" />
-
+	<!-- mybatis start 单独使用mybatis框架时，取消注释的部分（mybatis内） -->
 	<!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->
-	<bean id="transactionManager"
+	<!-- <bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
@@ -44,12 +51,115 @@
 		<aop:pointcut id="serviceMethod"
 			expression="execution(* com.laozhang.core.service..*.*(..))" />
 		<aop:advisor pointcut-ref="serviceMethod" advice-ref="txAdvice" />
-	</aop:config>
+	</aop:config> -->
 
 
 	<import resource="dao.xml" />
 	<import resource="redis.xml"/>
+	<!-- mybatis end -->
+	<!-- JPA START -->
+	<jpa:repositories
+		base-package="com.laozhang.core"
+		
+		factory-class="com.laozhang.core.jpa.MySpringJpaRepositoryFactoryBean"
+		entity-manager-factory-ref="entityManagerFactory"
+		transaction-manager-ref="jpaTransactionManager">
+	</jpa:repositories>	<!-- repository-impl-postfix="Impl" -->
+	
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="packagesToScan" value="com.laozhang.core"/>
+		<property name="persistenceProvider">
+            <bean class="org.hibernate.jpa.HibernatePersistenceProvider"/>
+        </property>
+        <property name="jpaVendorAdapter">
+        	<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+        		<property name="generateDdl" value="true"/>
+        		<property name="showSql" value="true"/>
+        		<!-- <property name="database" value="MYSQL"/>
+        		<property name="databasePlatform" value="org.hibernate.dialect.MySQL5Dialect"></property> -->
+        	</bean>
+        </property>
+        <!-- <property name="jpaDialect">
+        	<bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect"/>
+        </property> -->
+        <!-- <property name="jpaPropertyMap">
+            <map>
+            	<entry key="hibernate.current_session_context_class" value="thread" />
+            	<entry value="true" key="hibernate.format_sql"/>
+                <entry key="hibernate.query.substitutions" value="true 1, false 0"/>
+                <entry key="hibernate.default_batch_fetch_size" value="16"/>
+                <entry key="hibernate.max_fetch_depth" value="2"/>
+                <entry key="hibernate.generate_statistics" value="true"/>
+                <entry key="hibernate.bytecode.use_reflection_optimizer" value="true"/>
+                <entry key="hibernate.cache.use_second_level_cache" value="false"/>
+                <entry key="hibernate.cache.use_query_cache" value="false"/>
+            </map>
+        </property> -->
+	</bean>
+	
+	<bean id="jpaTransactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+    
+    <!--注解管理事务-->
+    <!-- <tx:annotation-driven transaction-manager="jpaTransactionManager" /> -->
+    
+    <aop:config>
+    	<aop:pointcut id="serviceMethod"
+			expression="execution(* com.laozhang.core.service..*.*(..))" />
+		<aop:advisor pointcut-ref="serviceMethod" advice-ref="txAdvice" />
+    </aop:config>
+    
+    <tx:advice id="txAdvice" transaction-manager="jpaTransactionManager">
+		<tx:attributes>
+			<tx:method name="save*" propagation="REQUIRED" isolation="READ_COMMITTED" />
+			<tx:method name="add*" propagation="REQUIRED" isolation="READ_COMMITTED" />
+			<tx:method name="update*" propagation="REQUIRED" isolation="READ_COMMITTED" />
+			<tx:method name="insert*" propagation="REQUIRED" isolation="READ_COMMITTED" />
+			<tx:method name="del*" propagation="REQUIRED" isolation="READ_COMMITTED" />
+			<tx:method name="*" propagation="REQUIRED" isolation="READ_COMMITTED"
+				read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+    
+    <!--
+	<aop:config>    
+        <aop:advisor id="jpaManagerTx" advice-ref="jpaTxAdvice" pointcut="execution(* j.jave.**.service.*.*(..) )"  />
+    </aop:config>
 
 
+    <tx:advice id="jpaTxAdvice"  transaction-manager="jpaTransactionManager"  >
+        <tx:attributes>
+            <tx:method name="*"  propagation="REQUIRED" read-only="false"  rollback-for="java.lang.Exception"   />
+            
+            <tx:method name="*ByPage"  propagation="SUPPORTS"  read-only="true"  rollback-for="java.lang.Exception"  />
+            <tx:method name="get*"  propagation="SUPPORTS"  read-only="true"  rollback-for="java.lang.Exception"  />
+            
 
+            <tx:method name="create*" propagation="REQUIRED" read-only="false"  rollback-for="java.lang.Exception"  />
+            <tx:method name="save*"    propagation="REQUIRED"  rollback-for="java.lang.Exception" />
+            <tx:method name="update*" propagation="REQUIRED" read-only="false"  rollback-for="java.lang.Exception"  />
+            <tx:method name="delete*" propagation="REQUIRED" read-only="false"   rollback-for="java.lang.Exception"  />
+
+        </tx:attributes>
+    </tx:advice>
+
+	
+	 <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">  
+        <property name="beanNames">  
+            <list>  
+                <value>*.transation.jpa</value>
+            </list>  
+        </property>  
+        <property name="interceptorNames">  
+            <list>  
+                <value>jpaTxAdvice</value>  
+            </list>  
+        </property>  
+    </bean>    
+  
+    -->
+
+	<!-- JPA END -->
 </beans>

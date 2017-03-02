@@ -19,7 +19,8 @@
 <a href="${pageContext.request.contextPath}/table/index" target="content">分页</a><br/>
 <a href="${pageContext.request.contextPath}/jsp/time.jsp" target="content">日期</a><br/>
 <a href="${pageContext.request.contextPath}/jsp/tree-list.jsp" target="content">树形列表</a><br/>
-<a href="${pageContext.request.contextPath}/jsp/tree.jsp" target="content">树</a>
+<a href="${pageContext.request.contextPath}/jsp/tree.jsp" target="content">树</a><br/>
+<a href="${pageContext.request.contextPath}/jsp/jpa.jsp" target="content">jpa</a>
 </div>
 
 <script src="${pageContext.request.contextPath}/static/js/jquery-1.11.0.min.js"></script>

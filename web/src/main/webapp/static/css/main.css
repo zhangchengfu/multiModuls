@@ -1,0 +1,6 @@
+.required{
+    position: relative;
+    top: 4px;
+    margin-left: 3px;
+    color: red;
+}
