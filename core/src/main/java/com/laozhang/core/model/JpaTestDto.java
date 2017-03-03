@@ -3,6 +3,8 @@ package com.laozhang.core.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.laozhang.core.aop.DateFormat;
+
 public class JpaTestDto implements Serializable {
 	
 	/**
@@ -26,7 +28,13 @@ public class JpaTestDto implements Serializable {
 	
 	private Date createDate;
 	
+	@DateFormat(property="createDate")
+	private String createDateFormat;
+	
 	private Date modifyDate;
+	
+	@DateFormat(property="modifyDate")
+	private String modifyDateFormat;
 	
 	private String name;
 
@@ -60,5 +68,21 @@ public class JpaTestDto implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getCreateDateFormat() {
+		return createDateFormat;
+	}
+
+	public void setCreateDateFormat(String createDateFormat) {
+		this.createDateFormat = createDateFormat;
+	}
+
+	public String getModifyDateFormat() {
+		return modifyDateFormat;
+	}
+
+	public void setModifyDateFormat(String modifyDateFormat) {
+		this.modifyDateFormat = modifyDateFormat;
 	}
 }

@@ -100,7 +100,8 @@
 			};
 			
 			var columns = [
-			    {title:'名称',name:'name',width:'80%'},
+			    {title:'名称',name:'name',width:'60%'},
+			    {title:'创建日期',name:'createDateFormat',width:'20%'},
 			    {title:'操作',width:'20%',render:function(rowdata,name,index){
 			    	var h = "<a href='javascript:void(0);' data-id='" + rowdata.id + "' class='click-btn-view'>详情</a> ";
 					h += "<a href='javascript:void(0);' data-id='"+rowdata.id+"' class='click-btn-edit'>编辑</a> ";

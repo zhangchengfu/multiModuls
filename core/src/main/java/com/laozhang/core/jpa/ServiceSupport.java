@@ -1,8 +1,6 @@
 package com.laozhang.core.jpa;
 
 import java.math.BigInteger;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -34,6 +32,8 @@ public abstract class ServiceSupport<T extends BaseJpaEntity> {
 	}
 	
 	public T _update(T object) {
+		T preObj = _getById(object.getId());
+		object.setCreateDate(preObj.getCreateDate());
 		object.setModifyDate(new Date());
 		object = getRepo().save(object);
 		return object;

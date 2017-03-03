@@ -30,8 +30,8 @@ public class JpaTestController {
 		try {
 			int page = simplePageRequestVO.getPage();
 			int pagesize = simplePageRequestVO.getPagesize();
-			PageResult<JpaTest> result = jpaTestService.getSqlPage(jpaTest, page + 1, pagesize);
-			//PageResult<JpaTest> result = jpaTestService.getJpaPage(jpaTest, page + 1, pagesize);
+			//PageResult<JpaTest> result = jpaTestService.getSqlPage(jpaTest, page + 1, pagesize);
+			PageResult<JpaTest> result = jpaTestService.getJpaPage(jpaTest, page + 1, pagesize);
 			return InvokeResult.success(AdaptPage.adapt(result));
 		} catch (Exception e) {
 			return InvokeResult.failure("查询失败");
