@@ -10,7 +10,7 @@
 <iframe name="content" class="ui-layout-center" frameborder="0" scrolling="auto"></iframe>
 <div class="ui-layout-north">欢迎[${username}]，<a href="${pageContext.request.contextPath}/loginout">退出</a></div>
 <div class="ui-layout-south">
-    test
+    
 </div>
 <div class="ui-layout-west">
 功能菜单<br/>
@@ -20,7 +20,15 @@
 <a href="${pageContext.request.contextPath}/jsp/time.jsp" target="content">日期</a><br/>
 <a href="${pageContext.request.contextPath}/jsp/tree-list.jsp" target="content">树形列表</a><br/>
 <a href="${pageContext.request.contextPath}/jsp/tree.jsp" target="content">树</a><br/>
-<a href="${pageContext.request.contextPath}/jsp/jpa.jsp" target="content">jpa</a>
+<a href="${pageContext.request.contextPath}/jsp/jpa.jsp" target="content">jpa</a><br/>
+<a href="${pageContext.request.contextPath}/jsp/js-study.jsp" target="content">javascript</a><br/>
+<a href="${pageContext.request.contextPath}/jsp/js-study2.jsp" target="content">javascript2</a><br/>
+<a href="${pageContext.request.contextPath}/jsp/js-study3.jsp" target="content">javascript3</a><br/>
+<a href="${pageContext.request.contextPath}/jsp/js-studyFour.jsp" target="content">javascript4</a><br/>
+<a href="${pageContext.request.contextPath}/jsp/jsbom.jsp" target="content">bom</a><br/>
+<a href="${pageContext.request.contextPath}/jsp/js-dom.jsp" target="content">dom</a><br/>
+<a href="${pageContext.request.contextPath}/jsp/windowPrint.jsp" target="content">windowPrint</a><br/>
+<a href="${pageContext.request.contextPath}/jsp/CustomerValidate.jsp" target="content">自定义表单验证</a>
 </div>
 
 <script src="${pageContext.request.contextPath}/static/js/jquery-1.11.0.min.js"></script>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@include file="/jsp/header.jsp" %>
+<%@ taglib prefix="formToken" uri="http://www.laozhag.com/formToken" %>
 <!DOCTYPE html>
 <% 
 	String id = request.getParameter("id");
@@ -19,6 +20,7 @@
 			</div>
 			
 			<form class="form-horizontal" id="Jpa-edit-form">
+				<formToken:formToken></formToken:formToken>
 				<div class="modal-body form-body ms-controller" ms-controller="JpaEditModel">
 					<input id="id" type="hidden" name="id" ms-attr-value="vo.id">
 					

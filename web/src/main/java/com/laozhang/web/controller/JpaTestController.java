@@ -11,6 +11,7 @@ import com.laozhang.model.base.PageResult;
 import com.laozhang.page.AdaptPage;
 import com.laozhang.page.InvokeResult;
 import com.laozhang.page.SimplePageRequestVO;
+import com.laozhang.taglib.FormToken;
 
 @Controller
 @RequestMapping(value = "/jpa")
@@ -51,6 +52,7 @@ public class JpaTestController {
 	
 	@ResponseBody
 	@RequestMapping(value="/edit")
+	@FormToken
 	public InvokeResult edit(JpaTest jpaTest) {
 		try {
 			jpaTestService.save(jpaTest);

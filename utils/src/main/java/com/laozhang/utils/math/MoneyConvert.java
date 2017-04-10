@@ -1,5 +1,6 @@
 package com.laozhang.utils.math;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 
 
@@ -53,6 +54,9 @@ public class MoneyConvert {
 	      DecimalFormat fmt = new DecimalFormat("###0.00");
 	      return fmt.format(s);
 	}
+    public static String formatDouble3(BigDecimal num) {
+    	return new DecimalFormat("##,###.00").format(num);//返回类似与555,555.00
+    }
     
     public static String digitUppercase(double n){
         String fraction[] = {"角", "分"};
