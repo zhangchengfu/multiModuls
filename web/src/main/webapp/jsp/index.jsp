@@ -28,7 +28,8 @@
 <a href="${pageContext.request.contextPath}/jsp/jsbom.jsp" target="content">bom</a><br/>
 <a href="${pageContext.request.contextPath}/jsp/js-dom.jsp" target="content">dom</a><br/>
 <a href="${pageContext.request.contextPath}/jsp/windowPrint.jsp" target="content">windowPrint</a><br/>
-<a href="${pageContext.request.contextPath}/jsp/CustomerValidate.jsp" target="content">自定义表单验证</a>
+<a href="${pageContext.request.contextPath}/jsp/CustomerValidate.jsp" target="content">自定义表单验证</a><br/>
+<a href="${pageContext.request.contextPath}/jsp/tableExport.jsp" target="content">tableExport</a>
 </div>
 
 <script src="${pageContext.request.contextPath}/static/js/jquery-1.11.0.min.js"></script>
