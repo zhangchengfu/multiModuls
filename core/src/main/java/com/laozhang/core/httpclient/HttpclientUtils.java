@@ -61,11 +61,16 @@ public class HttpclientUtils {
 	}
 	
 	//执行POST请求
-	public HttpResult doPost(String url, Map<String, String> params) throws IOException {
+	public HttpResult doPost(String url, Map<String, String> params, Map<String,String> headers) throws IOException {
 		HttpPost httpPost = new HttpPost(url);
 		httpPost.setConfig(this.requestConfig);
 		httpPost.setHeader("Content-Type", "application/x-www-form-urlencoded");
 		//httpPost.setHeader("Accept", "application/json");
+		if (null != headers) {
+			for (String key : headers.keySet()) {
+				httpPost.setHeader(key, headers.get(key));
+			}
+		}
 		if (params != null) {
 			List<NameValuePair> parameters = new ArrayList<NameValuePair>();
 			for (String key : params.keySet()) {
@@ -78,20 +83,28 @@ public class HttpclientUtils {
 		}
 		CloseableHttpResponse response = null;
 		try {
+			//CloseableHttpClient httpClient = HttpClients.createDefault();
 			response = httpClient.execute(httpPost);
 			HttpResult httpResult=new HttpResult(response.getStatusLine().getStatusCode(),
 					EntityUtils.toString(response.getEntity(), "UTF-8"));
+			//String result = EntityUtils.toString(response.getEntity());
 			return httpResult;
 		} finally {
 			if (response != null) {
 				response.close();
 			}
+			//httpClient.close();
 		}
 	}
 	
 	//执行POST请求
 	public HttpResult doPost(String url) throws IOException {
-		return this.doPost(url, null);
+		return this.doPost(url, null, null);
+	}
+	
+	//执行POST请求
+	public HttpResult doPost(String url, Map<String, String> params) throws IOException {
+		return this.doPost(url, params, null);
 	}
 	
 	//提交json数据
