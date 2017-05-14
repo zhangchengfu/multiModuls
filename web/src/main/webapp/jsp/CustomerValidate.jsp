@@ -79,8 +79,25 @@
 				</div>
 				
 				<div class="row">
-					<div class="col-sm-9"/>
-					
+					<label class="col-sm-2 control-label">审核是否通过:</label>
+					<div class="col-lg-9">
+						<input id="approveID" name="isApprove" style="margin-top: 12px;" type="radio" value="true" checked="checked">  通过</input>
+						<input id="rejectID" name="isApprove" style="margin-top: 12px;" type="radio" value="false">  驳回</input>
+						<input id="approve" type="hidden" name="approve" />
+					</div>
+				</div>
+				
+				<div class="row">	
+					<label class="col-lg-2 control-label">审核意见:</label>
+					<div class="col-lg-6"  id="approveResultDivID">
+						<input name="approveResult" style="display:inline; width:100%;" class="form-control"  type="text" id="approveResultID" maxlength="50"/>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-sm-9">
+											
+					</div>
 					<div class="col-sm-3">
 						<button id="save" type="button" class="btn btn-primary  ">
 								<span class="glyphicon glyphicon-search"></span>查询
@@ -175,6 +192,19 @@
 					return;
 				}
 			});
+			form.find("#approveID").on('click',function(event){
+				if(this.checked){
+					form.find("#approveResultID").rules("remove","required");
+		    		form.find("#approveResultID").valid();
+		    		$("#approveResultDivID").removeClass('has-error')
+				}
+			});
+			form.find("#rejectID").on('click',function(event){
+				if (this.checked){
+					form.find("#approveResultID").rules("add",{required:true});
+				}
+			});
+			
 		</script>
 	</body>
 </html>
