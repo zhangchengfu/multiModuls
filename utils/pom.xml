@@ -35,6 +35,11 @@
 			<artifactId>httpclient</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>axis</groupId>
+			<artifactId>axis</artifactId>
+			<version>1.4</version>
+		</dependency>
 
 	</dependencies>
 
