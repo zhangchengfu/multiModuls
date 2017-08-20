@@ -30,7 +30,10 @@
 <a href="${pageContext.request.contextPath}/jsp/windowPrint.jsp" target="content">windowPrint</a><br/>
 <a href="${pageContext.request.contextPath}/jsp/CustomerValidate.jsp" target="content">自定义表单验证</a><br/>
 <a href="${pageContext.request.contextPath}/jsp/tableExport.jsp" target="content">tableExport</a><br/>
-<a href="${pageContext.request.contextPath}/jsp/dispPdf.jsp" target="content">显示pdf</a>
+<a href="${pageContext.request.contextPath}/jsp/dispPdf.jsp" target="content">显示pdf</a><br/>
+<a href="${pageContext.request.contextPath}/jsp/echarts1.jsp" target="content">echarts1</a><br/>
+<a href="${pageContext.request.contextPath}/jsp/echarts2.jsp" target="content">echarts2</a><br/>
+<a href="${pageContext.request.contextPath}/jsp/vue.jsp" target="content">vue</a>
 </div>
 
 <script src="${pageContext.request.contextPath}/static/js/jquery-1.11.0.min.js"></script>
